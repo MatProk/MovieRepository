@@ -1,0 +1,11 @@
+.container{
+    color: white;
+}
+
+.btn{
+    margin-top: 10px;
+    background-color: red
+}
+body{
+    overflow:hidden;
+}
