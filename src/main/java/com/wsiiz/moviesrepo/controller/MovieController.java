@@ -49,6 +49,5 @@ public class MovieController {
         movie.setPayload(movieRequest.getPayload());
 
         movieRepository.save(movie);
-
     }
 }
