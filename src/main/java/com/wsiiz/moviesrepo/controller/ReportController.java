@@ -30,6 +30,7 @@ public class ReportController {
 
     @GetMapping(value = "/movies", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> getMovieRaport() throws DocumentException {
+
         List<Movie> movies = movieRepository.findAll();
         Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
