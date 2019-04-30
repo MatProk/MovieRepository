@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class SignServiceImpl implements SignService{
+public class SignServiceImpl implements SignService {
 
     @Autowired
     AuthenticationManager authenticationManager;
