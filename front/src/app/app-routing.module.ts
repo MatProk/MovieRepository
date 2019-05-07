@@ -7,6 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
+import { MoviesListComponent } from './movies-list/movies-list.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 const routes: Routes = [
 
@@ -33,6 +35,14 @@ const routes: Routes = [
     {
         path: 'account-details',
         component: AccountDetailsComponent
+    },
+    {
+        path: 'movies',
+        component: MoviesListComponent
+    },
+    {
+        path: 'movies/:id',
+         component: MovieDetailsComponent
     },
     {
         path: '',

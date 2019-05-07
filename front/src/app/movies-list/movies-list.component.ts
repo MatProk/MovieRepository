@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MovieService } from '../services/movie/movie.service';
+import { TokenStorageService } from '../auth/token-storage.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-movies-list',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MoviesListComponent implements OnInit {
 
-  constructor() { }
-
+  info: any;
+  movieArray;
+ 
+  constructor(private movieService: MovieService, private token: TokenStorageService) { }
+ 
   ngOnInit() {
+    this.info = {
+      token: this.token.getToken(),
+    };
+
+    this.movieService.getMovies().subscribe(
+      data => {
+        this.movieArray = data;
+        console.log(this.movieArray)
+        
+      },
+      (err: HttpErrorResponse) => {
+        console.log (err.message);
+      }
+    );
+    
   }
+
 
 }

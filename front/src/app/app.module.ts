@@ -12,6 +12,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactComponent } from './contact/contact.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MoviesListComponent } from './movies-list/movies-list.component';
     AboutusComponent,
     ContactComponent,
     AccountDetailsComponent,
-    MoviesListComponent
+    MoviesListComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,
