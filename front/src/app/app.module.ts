@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactComponent } from './contact/contact.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
+import { MoviesListComponent } from './movies-list/movies-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     RegisterComponent,
     AboutusComponent,
     ContactComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    MoviesListComponent
   ],
   imports: [
     BrowserModule,
