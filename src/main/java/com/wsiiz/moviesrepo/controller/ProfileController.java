@@ -19,5 +19,6 @@ public class ProfileController {
     @GetMapping("/profile")
     public User getProfile(@AuthenticationPrincipal UserPrinciple userPrinciple) {
         return userRepository.findByUsername(userPrinciple.getUsername()).get();
+
     }
 }

@@ -1,0 +1,30 @@
+<br>
+<div style="color: white;font-size: 40px; font-weight: bold; text-align: center">{{movie.name}}</div>
+<hr>
+<div class="row">
+  <div class="col-md-4">
+      <img width="350" height="400" src="{{movie.payload}}">
+  </div>
+
+  <div style="color: white;" class="col-md-8">
+      <div class="row">
+        <div class="top col-md-4">Wydawca:</div>
+        <div class="desc col-md-8">{{movie.author}}</div>
+      </div>
+      <div class="row">
+        <div class="top col-md-4">Opis:</div>
+        <div class="desc col-md-8">{{movie.description}}</div>
+      </div>
+      <div class="row">
+        <div class="top col-md-4">Data wydania:</div>
+        <div class="desc col-md-8">{{movie.releaseDate}}</div>
+      </div>
+  </div>
+</div>
+<br>
+<hr>
+<br>
+<div style="text-align: center;">
+<button class="btn btn-info" routerLink="/movies">Powrót</button>
+</div>
+<div style="margin-bottom:100px;"></div>
