@@ -17,6 +17,9 @@
             <li class="nav-item">
                 <a *ngIf="token" routerLink="movies" class="nav-link">Lista filmów</a>
             </li>
+            <li class="nav-item">
+                <a *ngIf="token" routerLink="admin-panel" class="nav-link">Panel administratora</a>
+            </li>
         </ul>
     </div>
     <div class="collapse navbar-collapse" id="tgmenu">
@@ -31,7 +34,9 @@
     </div>
 </nav>
 
-<router-outlet></router-outlet>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
 
   <footer style="text-align: center; color: white;" class="fixed-bottom navbar-dark bg-dark">
     <div class="card-footer">

@@ -9,6 +9,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 const routes: Routes = [
 
@@ -39,6 +40,10 @@ const routes: Routes = [
     {
         path: 'movies',
         component: MoviesListComponent
+    },
+    {
+        path: 'admin-panel',
+        component: AdminPanelComponent
     },
     {
         path: 'movies/:id',

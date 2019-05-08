@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +13,9 @@ import { ContactComponent } from './contact/contact.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { BsDatepickerModule } from 'ngx-bootstrap';
+import { httpInterceptorProviders } from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -24,15 +27,18 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     ContactComponent,
     AccountDetailsComponent,
     MoviesListComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    BsDatepickerModule.forRoot()
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

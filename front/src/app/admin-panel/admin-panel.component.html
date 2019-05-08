@@ -1,0 +1,129 @@
+<div style="color:white;" *ngIf="info.token; else loggedOut">
+  <br><br>
+  <form autocomplete="off" [formGroup]="registerForm">
+    <div class="row">
+      <div class="col-md-6">
+        <table style="opacity: 0.8;" class="table table-dark" >
+          <thead>
+            <tr style="text-align:center;">
+              <th scope="col">Nazwa filmu</th>
+              <th scope="col">Prezes</th>
+              <th scope="col">Usuń</th>
+              <th scope="col">Edytuj</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="text-align:center;" *ngFor="let movie of movieArray">
+              <td>{{movie.name}}</td>
+              <td>{{movie.author}}</td>
+              <td><button type="button" style="padding:3px;" (click)="deleteMovie(movie.id)" class="btn btn-primary">Usuń</button></td>
+              <td><button type="button" style="padding:3px;" disabled class="btn btn-primary">Edytuj</button></td>
+            </tr>
+          </tbody>
+          
+        </table>
+      </div>
+      <div class="col-md-6">
+        <div style="font-weight: bold; text-align:center;" class="form-group">
+          <label>Nazwa filmu *</label>
+          <input formControlName="nameControl" [ngClass]="{ 'is-invalid': submitted && f.nameControl.errors }" [(ngModel)]="movie.name" class="form-control">
+          <div *ngIf="submitted && f.nameControl.errors" class="invalid-feedback">
+            <div *ngIf="f.nameControl.errors.required">Nazwa filmu wymagana!</div>
+          </div>
+      </div>
+      <div style="font-weight: bold; text-align:center;" class="form-group">
+          <label>Rezyser *</label>
+          <input formControlName="authorControl" [ngClass]="{ 'is-invalid': submitted && f.authorControl.errors }" [(ngModel)]="movie.author" class="form-control">
+          <div *ngIf="submitted && f.authorControl.errors" class="invalid-feedback">
+            <div *ngIf="f.authorControl.errors.required">Rezyser filmu jest wymagany!</div>
+          </div>
+      </div>
+      <div style="font-weight: bold; text-align:center;" class="form-group">
+          <label>Opis *</label>
+          <textarea formControlName="descriptionControl" [ngClass]="{ 'is-invalid': submitted && f.descriptionControl.errors }" style="resize: none;" rows="4" [(ngModel)]="movie.description" class="form-control" required></textarea>
+          <div *ngIf="submitted && f.descriptionControl.errors" class="invalid-feedback">
+            <div *ngIf="f.descriptionControl.errors.required">Opis filmu jest wymagany!</div>
+          </div>
+      </div>
+      <div style="font-weight: bold; text-align:center;" class="form-group">
+        <label>Data wydania *</label>
+        <input type="text" formControlName="releaseDateControl" [ngClass]="{ 'is-invalid': submitted && f.releaseDateControl.errors }" [(ngModel)]="movie.releaseDate" class="form-control" [bsConfig]="{containerClass: 'theme-blue' , dateInputFormat: 'YYYY-MM-DD'  }" bsDatepicker>
+        <div *ngIf="submitted && f.releaseDateControl.errors" class="invalid-feedback">
+          <div *ngIf="f.releaseDateControl.errors.required">Data wydania filmu jest wymagana</div>
+        </div>
+      </div>
+      <div *ngIf="!isEditing" style="font-weight: bold; text-align:center;" class="form-group">
+          <label>Zdjęcie</label><br>
+          <input style="text-align:center;" name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)" />     
+      </div> 
+      <br>
+      <div class="add form-row form-group">
+          <div class="form-group col-md-4">
+          </div>
+          <div class="form-group col-md-4">
+              <button style="font-weight: bold; padding:7px;" (click)="addMovie()" type="submit" class="add btn btn-info btn-block ">Dodaj film</button>
+              <button *ngIf="isEditing" style="font-weight: bold; padding:7px;" [routerLink]="home"  type="submit" class="add btn btn-info btn-block ">Zaktualizuj film</button>
+          </div>
+          <div class="form-group col-md-4">
+          </div>
+        </div>
+      </div>
+      
+      <!-- <div style="font-weight: bold; text-align:center;" class="col-md-6">
+          <div style="margin: auto; width: 100%; margin-top: 30px;" class="mat-elevation-z">
+              <table mat-table [dataSource]="dataSource">
+
+                <ng-container matColumnDef="id">
+                  <th style="text-align: center;" mat-header-cell *matHeaderCellDef> Id </th>
+                  <td style="text-align: center;" mat-cell *matCellDef="let game"> {{game.id}} </td>
+                </ng-container>
+            
+
+                <ng-container matColumnDef="name">
+                  <th style="text-align: center;" mat-header-cell *matHeaderCellDef> Nazwa gry </th>
+                  <td style="text-align: center;" mat-cell *matCellDef="let game"> {{game.name}} </td>
+                </ng-container>
+ 
+                <ng-container matColumnDef="author">
+                  <th style="text-align: center;" mat-header-cell *matHeaderCellDef> Wydawca </th>
+                  <td style="text-align: center;" mat-cell *matCellDef="let game"> {{game.author}} </td>
+                </ng-container>
+             
+                <ng-container matColumnDef="show">
+                      <th mat-header-cell style="text-align: center;" *matHeaderCellDef> Modyfikuj </th>
+                      <td mat-cell style="text-align: center;" *matCellDef="let game">
+                        <button style="margin-left: 5px;" *ngIf="!isEditing" style="padding: 3px;" class="btn btn-danger" (click)="deleteGame(game.id)">Usuń</button>&nbsp;
+                        <button style="margin-left: 5px;" *ngIf="isEditing" style="padding: 3px;" class="btn btn-danger" disabled (click)="deleteGame(game.id)">Usuń</button>&nbsp;
+                        <button style="margin-left: 5px;" *ngIf="!isEditing" style="padding: 3px;" class="btn btn-warning" (click)="startEdit(game.id)">Edytuj</button>
+                        <button style="margin-left: 5px;" *ngIf="isEditing" style="padding: 3px;" disabled class="btn btn-warning" (click)="startEdit(game.id)">Edytuj</button>
+                      </td>
+                </ng-container>
+          
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            
+              <mat-paginator style="margin-left: 10px; width:100%;" [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+            </div>
+      </div> -->
+    </div>
+
+  </form>
+  <div style="margin-top: 50px;font-size: 35px; font-weight: bold; text-align:center;">Raport</div>
+  <br>
+  <div style="margin-bottom: 100px;" class="add form-row form-group">
+      <div class="form-group col-md-4">
+      </div>
+      <div class="form-group col-md-4">
+          <button style="font-weight: bold; padding:10px;" type="submit" class="add btn btn-info btn-block ">Pobierz raport</button>
+      </div>
+      <div class="form-group col-md-4">
+      </div>
+  </div>    
+</div>
+
+
+ 
+<ng-template #loggedOut>
+  <div class="center"><b>Musisz być administratorem, żeby zobaczyć zawartość!</b></div>
+</ng-template>
