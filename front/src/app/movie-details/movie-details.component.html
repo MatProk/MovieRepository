@@ -3,7 +3,8 @@
 <hr>
 <div class="row">
   <div class="col-md-4">
-      <img width="350" height="400" src="{{movie.payload}}">
+      <img *ngIf="movie.payload" width="250" height="350" src="{{movie.payload}}">
+      <img *ngIf="!movie.payload" src="../../assets/img/brak-zdjecia.png">
   </div>
 
   <div style="color: white;" class="col-md-8">
