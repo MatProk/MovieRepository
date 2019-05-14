@@ -29,8 +29,9 @@ public class CommentController {
     CommentRepository commentRepository;
 
     @GetMapping("movies/{id}/comments")
-    public List<Comment> getComments(){
-        return commentRepository.findAll();
+    public List<Comment> getComments(@PathVariable(value = "id") Long id) {
+        Movie movie = movieRepository.getOne(id);
+        return (List<Comment>) movie.getComments();
     }
 
     @PostMapping("movies/{id}/comments")

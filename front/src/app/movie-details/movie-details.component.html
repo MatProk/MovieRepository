@@ -22,6 +22,19 @@
       </div>
   </div>
 </div>
+<div>
+  <br><br>
+  <div style="font-size: 25px; text-align: center;">Komentarze</div><br>
+  <div *ngFor="let comment of comments">
+    <b style="font-size: 20px; text-align: left;">{{comment.user.name}}&nbsp;&nbsp;&nbsp;&nbsp;{{comment.createDate}}</b>
+    <br>
+    <div style="text-align:justify;">{{comment.body}}</div>
+    <br>
+  </div>
+
+</div>
+
+
 <br>
 <hr>
 <br>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Observable } from 'rxjs';
-import { MovieExample } from './movie.resource';
+import { MovieExample, CommentExample } from './movie.resource';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +37,9 @@ export class MovieService {
 
   updateMovie(movieId: number, movie: MovieExample): Observable<MovieExample>{
     return this.http.put<MovieExample>(this.moviesList + '/' + movieId, movie, this.httpOptions)
+  }
+
+  getComments(movieId: number): Observable<CommentExample> {
+    return this.http.get<CommentExample>(this.moviesList + '/' + movieId + '/comments', this.httpOptions)
   }
 }

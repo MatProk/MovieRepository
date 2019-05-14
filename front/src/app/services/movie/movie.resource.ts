@@ -8,3 +8,11 @@ export class MovieExample {
     
     constructor(){}
   }
+
+  export class CommentExample {
+    id: number;
+    body: string;
+    createDate: Date;
+    
+    constructor(){}
+  }

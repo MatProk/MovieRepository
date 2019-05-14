@@ -9,7 +9,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
-
+  comments: any;
   movie: any;
   hasToken: any;
   errorinfo: string = null;
@@ -23,7 +23,13 @@ export class MovieDetailsComponent implements OnInit {
       this.movieService.getOneMovie(params['id']).subscribe(data => {
         console.log(data);
         this.movie = data})
-    });
+      });
+
+      this.route.params.subscribe(params => {
+        this.movieService.getComments(params['id']).subscribe(data => {
+          console.log(data);
+          this.comments = data})
+        });
   }
 
   ngOnInit() {
