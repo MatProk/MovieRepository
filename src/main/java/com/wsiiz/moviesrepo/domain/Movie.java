@@ -5,6 +5,8 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -34,6 +36,9 @@ public class Movie {
     @Lob
     @Column(name = "payload")
     private String payload;
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.REMOVE)
+    private Collection<Comment> comments;
 
     public Movie(String name, String author, String description, Date releaseDate, String payload) {
         this.name = name;

@@ -1,5 +1,7 @@
 package com.wsiiz.moviesrepo.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.NaturalId;
 
@@ -39,12 +41,12 @@ public class User{
     @Email
     private String email;
 
+    @JsonIgnore
     @NotBlank
     @Size(min=6, max = 100)
     private String password;
 
-
-
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
     	joinColumns = @JoinColumn(name = "user_id"),
