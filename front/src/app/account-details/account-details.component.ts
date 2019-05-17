@@ -13,7 +13,10 @@ export class AccountDetailsComponent implements OnInit {
   constructor(private token: TokenStorageService, private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUser().subscribe(data => this.user = data)
+    this.userService.getUser().subscribe(data =>{
+      this.user = data;
+      console.log(this.user);
+    })
   }
 
 }

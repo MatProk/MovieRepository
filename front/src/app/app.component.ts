@@ -33,6 +33,7 @@ export class AppComponent {
       });
       this.userService.getUser().subscribe(data => this.user = data)
     }
+    console.log(this.roles);
   }
 
   logout() {
