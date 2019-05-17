@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieExample } from '../services/movie/movie.resource';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { MovieService } from '../services/movie/movie.service';
 import { UserService } from '../services/user/user.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-admin-panel',
@@ -93,15 +94,15 @@ export class AdminPanelComponent implements OnInit {
     this.submitted = false;
   }
 
-  // download() {
-  //   let headers = new HttpHeaders();
-  //   headers = headers.set('Accept', 'application/pdf');
-  //   return this.http.get(this.listGames + "/raport/games", { headers: headers, responseType: 'blob' }).subscribe(
-  //     data => {
-  //       saveAs(data, 'book-raport.pdf')
-  //     }
-  //   );
-  // }
+  download() {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    return this.http.get("http://localhost:8080/raport/movies", { headers: headers, responseType: 'blob' }).subscribe(
+      data => {
+        saveAs(data, 'book-raport.pdf')
+      }
+    );
+  }
 
   deleteMovie(id: number){
     this.movieService.deleteMovie(id).subscribe(data => {

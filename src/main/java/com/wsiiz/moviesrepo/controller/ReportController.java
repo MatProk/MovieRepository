@@ -39,9 +39,9 @@ public class ReportController {
         Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 17, BaseColor.BLACK);
         Chunk chunk = new Chunk("Lista filmow", font);
 
-        PdfPTable table = new PdfPTable(6);
+        PdfPTable table = new PdfPTable(5);
         table.setWidthPercentage(100);
-        table.setWidths(new int[]{1, 2, 2, 4, 2, 2});
+        table.setWidths(new int[]{1, 2, 2, 4, 2});
 
         Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
 
@@ -60,7 +60,7 @@ public class ReportController {
         hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(hcell);
 
-        hcell = new PdfPCell(new Phrase("Wydawca", headFont));
+        hcell = new PdfPCell(new Phrase("Reżyser", headFont));
         hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(hcell);
 
