@@ -39,7 +39,11 @@ export class MovieService {
     return this.http.put<MovieExample>(this.moviesList + '/' + movieId, movie, this.httpOptions)
   }
 
-  getComments(movieId: number): Observable<CommentExample> {
-    return this.http.get<CommentExample>(this.moviesList + '/' + movieId + '/comments', this.httpOptions)
+  getComments(movieId: number){
+    return this.http.get(this.moviesList + '/' + movieId + '/comments', this.httpOptions)
+  }
+
+  addComment(comment, commentId: number) {
+    return this.http.post(this.moviesList + '/' + commentId + "/comments", comment, this.httpOptions)
   }
 }

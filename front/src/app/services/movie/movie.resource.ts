@@ -10,9 +10,7 @@ export class MovieExample {
   }
 
   export class CommentExample {
-    id: number;
     body: string;
-    createDate: Date;
     
     constructor(){}
   }
