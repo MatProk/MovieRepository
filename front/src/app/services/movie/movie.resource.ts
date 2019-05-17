@@ -8,3 +8,9 @@ export class MovieExample {
     
     constructor(){}
   }
+
+  export class CommentExample {
+    body: string;
+    
+    constructor(){}
+  }

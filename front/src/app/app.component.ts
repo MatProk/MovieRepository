@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './auth/token-storage.service';
+import { UserService } from './services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,9 @@ export class AppComponent {
   private roles: string[];
   private authority: string;
   token;
+  user;
  
-  constructor(private router: Router, private tokenStorage: TokenStorageService) { }
+  constructor(private router: Router, private tokenStorage: TokenStorageService, private userService: UserService) { }
 
   ngOnInit() {
     this.token = this.tokenStorage.getToken();
@@ -29,7 +31,9 @@ export class AppComponent {
         this.authority = 'user';
         return true;
       });
+      this.userService.getUser().subscribe(data => this.user = data)
     }
+    console.log(this.roles);
   }
 
   logout() {

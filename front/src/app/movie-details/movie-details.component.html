@@ -1,5 +1,5 @@
-<br>
-<div style="color: white;font-size: 40px; font-weight: bold; text-align: center">{{movie.name}}</div>
+<div style="color: white;font-size: 40px; font-weight: bold; text-align: center; margin-top: -50px;">{{movie.name}}</div>
+
 <hr>
 <div class="row">
   <div class="col-md-4">
@@ -20,6 +20,25 @@
         <div class="top col-md-4">Data wydania:</div>
         <div class="desc col-md-8">{{movie.releaseDate}}</div>
       </div>
+  </div>
+</div>
+<div>
+  <br><br>
+  <div style="font-size: 25px; text-align: center;">Komentarze</div><br>
+  <div class="row">
+    <div class="col-md-10">
+        <textarea style="resize: none;" rows="2" placeholder="Tresc komentarza" [(ngModel)]="pushComment.body" required></textarea>
+    </div>
+    <div class="col-md-2">
+        <button style="min-height:100%; min-width:100%;" (click)="addComment()" class="btn btn-success">Dodaj komentarz</button>
+    </div>
+  </div>
+  <br>
+  <div *ngFor="let comment of comments">
+    <b style="font-size: 20px; text-align: left;">{{comment.user.name}}&nbsp;&nbsp;&nbsp;&nbsp;{{comment.createDate}}</b>
+    <br>
+    <div style="text-align:justify;">{{comment.body}}</div>
+    <br>
   </div>
 </div>
 <br>

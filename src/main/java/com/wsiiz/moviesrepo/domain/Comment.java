@@ -1,5 +1,6 @@
 package com.wsiiz.moviesrepo.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -22,6 +23,7 @@ public class Comment {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date", nullable = false, updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @CreationTimestamp
     private Date createDate;
 
