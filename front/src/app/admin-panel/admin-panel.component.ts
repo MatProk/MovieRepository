@@ -130,20 +130,28 @@ export class AdminPanelComponent implements OnInit {
     this.movie.payload = reader.result;
   }
 
-  // updateGame(){
-  //     let zmienna = this.game.id;
-  //     console.log(this.game.id)
-  //     this.gameService.updateGame(zmienna, this.game).subscribe(data => {
-  //       this.isEditing = false;
-  //       this.game.name = "";
-  //       this.game.author = "";
-  //       this.game.description = "";
-  //       this.game.gameMode = "";
-  //       this.game.releaseDate = null;
-  //       this.toastr.info('Pomyslnie zaktualizowano gre', 'Sukces!');
-  //       console.log("pykło");
-  //     })
-  // }
+  updateMovie(){
+      let zmienna = this.movie.id;
+      console.log(this.movie.id)
+      this.movieService.updateMovie(zmienna, this.movie).subscribe(data => {
+        this.isEditing = false;
+        this.movie.name = "";
+        this.movie.author = "";
+        this.movie.description = "";
+        this.movie.releaseDate = null;
+        console.log("pykło");
+        this.movieService.getMovies().subscribe(
+          data => {
+            this.movieArray = data;
+            console.log(this.movieArray)
+            
+          },
+          (err: HttpErrorResponse) => {
+            console.log (err.message);
+          }
+        );
+      })
+  }
 
   startEdit(movieId: number){
     this.movieService.getOneMovie(movieId).subscribe(data => {

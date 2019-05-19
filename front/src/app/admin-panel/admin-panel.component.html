@@ -16,8 +16,14 @@
             <tr style="text-align:center;" *ngFor="let movie of movieArray">
               <td>{{movie.name}}</td>
               <td>{{movie.author}}</td>
-              <td><button type="button" style="padding:3px;" (click)="deleteMovie(movie.id)" class="btn btn-primary">Usuń</button></td>
-              <td><button type="button" style="padding:3px;" disabled class="btn btn-primary">Edytuj</button></td>
+              <td>
+                <button type="button" style="padding:3px;" *ngIf="!isEditing" (click)="deleteMovie(movie.id)" class="btn btn-danger">Usuń</button>
+                <button style="margin-left: 5px;" *ngIf="isEditing" style="padding: 3px;" class="btn btn-danger" disabled (click)="deleteMovie(movie.id)">Usuń</button>
+              </td>
+              <td>
+                <button type="button" style="padding:3px;" *ngIf="!isEditing" (click)="startEdit(movie.id)" class="btn btn-warning">Edytuj</button>
+                <button style="margin-left: 5px;" *ngIf="isEditing" style="padding: 3px;" disabled class="btn btn-warning" (click)="startEdit(movie.id)">Edytuj</button>
+              </td>
             </tr>
           </tbody>
           
@@ -61,8 +67,8 @@
           <div class="form-group col-md-4">
           </div>
           <div class="form-group col-md-4">
-              <button style="font-weight: bold; padding:7px;" (click)="addMovie()" type="submit" class="add btn btn-info btn-block ">Dodaj film</button>
-              <button *ngIf="isEditing" style="font-weight: bold; padding:7px;" [routerLink]="home"  type="submit" class="add btn btn-info btn-block ">Zaktualizuj film</button>
+              <button *ngIf="!isEditing" style="font-weight: bold; padding:7px;" (click)="addMovie()" type="submit" class="add btn btn-info btn-block ">Dodaj film</button>
+              <button *ngIf="isEditing" style="font-weight: bold; padding:7px;" (click)="updateMovie()" type="submit" class="add btn btn-info btn-block ">Zaktualizuj film</button>
           </div>
           <div class="form-group col-md-4">
           </div>
