@@ -50,19 +50,10 @@ export class AdminPanelComponent implements OnInit {
       token: this.token.getToken(),
     };
 
-    // this.movieService.getMovies().subscribe (res => {
-    //   this.searchResult = res;
-    //   this.dataSource.data = this.searchResult;
-    //   this.dataSource = new MatTableDataSource(this.searchResult);
-    //   this.dataSource.paginator = this.paginator;
-
-    // });
-
     this.registerForm = this.formBuilder.group({
       nameControl: ['', Validators.required],
       authorControl: ['', Validators.required],
-      descriptionControl: ['', [Validators.required]],
-      gameModeControl: ['', [Validators.required]],
+      descriptionControl: ['', Validators.required],
       releaseDateControl: ['', Validators.required],
   });
  }
@@ -70,10 +61,10 @@ export class AdminPanelComponent implements OnInit {
  get f() { return this.registerForm.controls; }
 
  addMovie(){
-    // this.submitted = true;
-    // if(this.registerForm.invalid){
-    //   return;
-    // }
+    this.submitted = true;
+    if(this.registerForm.invalid){
+      return;
+    }
     console.log(this.movie);
     this.movieService.addMovie(this.movie).subscribe(res => {
       this.movie.name = "";
@@ -139,26 +130,34 @@ export class AdminPanelComponent implements OnInit {
     this.movie.payload = reader.result;
   }
 
-  // updateGame(){
-  //     let zmienna = this.game.id;
-  //     console.log(this.game.id)
-  //     this.gameService.updateGame(zmienna, this.game).subscribe(data => {
-  //       this.isEditing = false;
-  //       this.game.name = "";
-  //       this.game.author = "";
-  //       this.game.description = "";
-  //       this.game.gameMode = "";
-  //       this.game.releaseDate = null;
-  //       this.toastr.info('Pomyslnie zaktualizowano gre', 'Sukces!');
-  //       console.log("pykło");
-  //     })
-  // }
+  updateMovie(){
+      let zmienna = this.movie.id;
+      console.log(this.movie.id)
+      this.movieService.updateMovie(zmienna, this.movie).subscribe(data => {
+        this.isEditing = false;
+        this.movie.name = "";
+        this.movie.author = "";
+        this.movie.description = "";
+        this.movie.releaseDate = null;
+        console.log("pykło");
+        this.movieService.getMovies().subscribe(
+          data => {
+            this.movieArray = data;
+            console.log(this.movieArray)
+            
+          },
+          (err: HttpErrorResponse) => {
+            console.log (err.message);
+          }
+        );
+      })
+  }
 
-  // startEdit(gameId: number){
-  //   this.gameService.getOneGame(gameId).subscribe(data => {
-  //     console.log(data);
-  //     this.game = data
-  //   })
-  //   this.isEditing = true;
-  // }
+  startEdit(movieId: number){
+    this.movieService.getOneMovie(movieId).subscribe(data => {
+      console.log(data);
+      this.movie = data
+    })
+    this.isEditing = true;
+  }
 }
