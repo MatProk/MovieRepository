@@ -50,19 +50,10 @@ export class AdminPanelComponent implements OnInit {
       token: this.token.getToken(),
     };
 
-    // this.movieService.getMovies().subscribe (res => {
-    //   this.searchResult = res;
-    //   this.dataSource.data = this.searchResult;
-    //   this.dataSource = new MatTableDataSource(this.searchResult);
-    //   this.dataSource.paginator = this.paginator;
-
-    // });
-
     this.registerForm = this.formBuilder.group({
       nameControl: ['', Validators.required],
       authorControl: ['', Validators.required],
-      descriptionControl: ['', [Validators.required]],
-      gameModeControl: ['', [Validators.required]],
+      descriptionControl: ['', Validators.required],
       releaseDateControl: ['', Validators.required],
   });
  }
@@ -70,10 +61,10 @@ export class AdminPanelComponent implements OnInit {
  get f() { return this.registerForm.controls; }
 
  addMovie(){
-    // this.submitted = true;
-    // if(this.registerForm.invalid){
-    //   return;
-    // }
+    this.submitted = true;
+    if(this.registerForm.invalid){
+      return;
+    }
     console.log(this.movie);
     this.movieService.addMovie(this.movie).subscribe(res => {
       this.movie.name = "";
@@ -154,11 +145,11 @@ export class AdminPanelComponent implements OnInit {
   //     })
   // }
 
-  // startEdit(gameId: number){
-  //   this.gameService.getOneGame(gameId).subscribe(data => {
-  //     console.log(data);
-  //     this.game = data
-  //   })
-  //   this.isEditing = true;
-  // }
+  startEdit(movieId: number){
+    this.movieService.getOneMovie(movieId).subscribe(data => {
+      console.log(data);
+      this.movie = data
+    })
+    this.isEditing = true;
+  }
 }
