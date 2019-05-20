@@ -28,6 +28,7 @@ export class MovieDetailsComponent implements OnInit {
   addComment(){
     this.route.params.subscribe(params => {
       this.movieService.addComment(this.pushComment, params['id']).subscribe(data => {
+        this.pushComment.body = "";
         this.route.params.subscribe(params => {
           this.movieService.getComments(params['id']).subscribe(data => {
             console.log(data);
